@@ -3,21 +3,7 @@
 class window.App extends Backbone.Model
   initialize: ->
     @set 'deck', deck = new Deck()
-    @set 'playerHand', deck.dealPlayer()
-    @set 'dealerHand', deck.dealDealer()
-    @get 'playerHand' 
-      .on 'done', (-> 
-        @get 'dealerHand'
-          .finish()
-        @gameEnd()
-        return
-        ), @
-    @get 'playerHand'
-      .on 'hit', (->
-        if @get 'playerHand'
-          .minScore() > 21 then @trigger 'bust'
-        return
-      ), @
+    @newRound()
     return
   
   gameEnd: ->
@@ -34,5 +20,18 @@ class window.App extends Backbone.Model
       .dealPlayer())
     @set 'dealerHand', (@get 'deck'
       .dealDealer())
+    @get 'playerHand' 
+      .on 'done', (-> 
+        @get 'dealerHand'
+          .finish()
+        @gameEnd()
+        return
+        ), @
+    @get 'playerHand'
+      .on 'hit', (->
+        if @get 'playerHand'
+          .minScore() > 21 then @trigger 'bust'
+        return
+      ), @    
     return
     
