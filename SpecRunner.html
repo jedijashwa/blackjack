@@ -6,10 +6,13 @@
     <link rel="stylesheet" href="lib/mocha/mocha.css" />
     <script src="lib/jquery.js"></script>
     <script src="lib/underscore.js"></script>
-    <script src="lib/backbone.js"></script>
-    <script src="lib/mocha/mocha.js"></script>
     <script src="lib/chai/chai.js"></script>
-    <script>
+    <script src="lib/mocha/mocha.js"></script>
+    <script src="lib/backbone.js"></script>
+    <script src="lib/sinon/lib/sinon.js"></script>
+    <script src="bower_components/sinon-chai/lib/sinon-chai.js"></script>
+    <script src="lib/chai/chai-backbone.js"></script>
+    <script> 
       mocha.setup('bdd');
       $(function() {
         window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run();

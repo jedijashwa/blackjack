@@ -13,6 +13,9 @@ describe "app", ->
     hand = app.get 'playerHand'
     dealerHand = app.get 'dealerHand'
     discard = app.get 'discard'
+    # sinon.spy app, 'trigger'
+    console.log sinon
+    return
   
   describe "initialize", ->
     it 'should have a deck of 48 cards', ->
@@ -47,6 +50,10 @@ describe "app", ->
       hand.hit()
       app.discard()
       assert.strictEqual discard.length, 5
+  
+  describe 'gameEnd', ->
+    it 'should trigger "bust" if player\'s hand is over 21', ->
+      hand.bestScore = -> return 22 
       
   
 describe "app view", ->
