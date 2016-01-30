@@ -8,11 +8,14 @@ class window.App extends Backbone.Model
   
   gameEnd: ->
     dealer = @get 'dealerHand' 
-      .minScore()
+      .bestScore()
     player = @get 'playerHand' 
-      .minScore()
-    if dealer > 21 then @trigger 'dealerBust'      
-    if player > dealer then @trigger 'win' else if dealer is player then @trigger 'push' else @trigger 'lose'
+      .bestScore()
+    if player > 21 then @trigger 'bust'
+    else if dealer > 21 then @trigger 'dealerBust'      
+    else if player > dealer then @trigger 'win' 
+    else if dealer is player then @trigger 'push' 
+    else @trigger 'lose'
     return
 
   newRound: ->
@@ -30,7 +33,7 @@ class window.App extends Backbone.Model
     @get 'playerHand'
       .on 'hit', (->
         if @get 'playerHand'
-          .minScore() > 21 then @trigger 'bust'
+          .minScore() > 21 then @gameEnd()
         return
       ), @    
     return

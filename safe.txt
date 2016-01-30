@@ -1,0 +1,5 @@
+function(song)
+this.set('last', song)
+
+
+is (scores()[1] >=17 && <=21) or (scores()[0] >=17)
