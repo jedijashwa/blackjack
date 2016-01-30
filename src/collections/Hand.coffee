@@ -5,6 +5,7 @@ class window.Hand extends Backbone.Collection
 
   hit: ->
     @add(@deck.pop())
+    @trigger 'hit'
     @last()
     
   stand: ->
@@ -35,3 +36,5 @@ class window.Hand extends Backbone.Collection
 
     return
 
+  bestScore: ->
+    if @scores()[1] <= 21 then @scores()[1] else @scores()[0]

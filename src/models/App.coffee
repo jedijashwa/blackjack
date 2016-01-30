@@ -9,9 +9,25 @@ class window.App extends Backbone.Model
       .on 'done', (-> 
         @get 'dealerHand'
           .finish()
+        @gameEnd()
         return
         ), @
+    @get 'playerHand'
+      .on 'hit', (->
+        if @get 'playerHand'
+          .minScore() > 21 then @trigger 'bust'
+        return
+      ), @
     return
+  
+  gameEnd: ->
+    if @get 'dealerHand' 
+      .minScore() > 21 then @trigger 'dealerBust'      
+    if @get 'playerHand' 
+      .bestScore() > @get 'dealerHand' 
+        .bestScore() then @trigger 'win' else @trigger 'lose'
+    return
+
     
     
     
