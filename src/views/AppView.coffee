@@ -8,13 +8,21 @@ class window.AppView extends Backbone.View
   events:
     'click .hit-button': -> @model.get('playerHand').hit()
     'click .stand-button': -> @model.get('playerHand').stand()
-    'bust': -> alert 'bust'
-    'dealerBust': -> alert 'dealerBust'
-    'win': -> alert 'win'
-    'lose': -> alert 'lose'
 
   initialize: ->
     @render()
+    @model.on 'bust', (->
+      alert 'bust'), @
+    @model.on 'dealerBust', (->
+      alert 'dealer bust'), @
+    @model.on 'win', (->
+      alert 'you win'), @
+    @model.on 'lose', (->
+      alert 'you lose'), @
+      
+  reset: ->
+    this.model.newRound()
+    this.render()
 
   render: ->
     @$el.children().detach()
