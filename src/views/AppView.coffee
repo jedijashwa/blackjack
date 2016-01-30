@@ -12,13 +12,21 @@ class window.AppView extends Backbone.View
   initialize: ->
     @render()
     @model.on 'bust', (->
-      alert 'bust'), @
+      alert 'bust'
+      @reset()
+      ), @
     @model.on 'dealerBust', (->
-      alert 'dealer bust'), @
+      alert 'dealer bust'
+      @reset()
+      ), @
     @model.on 'win', (->
-      alert 'you win'), @
+      alert 'you win'
+      @reset()
+      ), @
     @model.on 'lose', (->
-      alert 'you lose'), @
+      alert 'you lose'
+      @reset()
+      ), @
       
   reset: ->
     this.model.newRound()

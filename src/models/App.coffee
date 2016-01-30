@@ -30,6 +30,9 @@ class window.App extends Backbone.Model
     return
 
   newRound: ->
-    @set 'playerHand', deck.dealPlayer()
-    @set 'dealerHand', deck.dealDealer()
+    @set 'playerHand', (@get 'deck'
+      .dealPlayer())
+    @set 'dealerHand', (@get 'deck'
+      .dealDealer())
+    return
     
