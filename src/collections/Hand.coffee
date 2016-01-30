@@ -8,7 +8,7 @@ class window.Hand extends Backbone.Collection
     @last()
     
   stand: ->
-    @trigger 'stand'
+    @trigger 'done'
     return
     
   hasAce: -> @reduce (memo, card) ->
@@ -26,8 +26,12 @@ class window.Hand extends Backbone.Collection
     [@minScore(), @minScore() + 10 * @hasAce()]
     
   finish: ->
-    if @isDealer 
+    if @isDealer
       @at(0)
         .flip()
+      while @scores()[0] < 17 and not (@scores()[1] >= 17 and @scores()[1] <= 21)
+        @hit()
+        console.log @scores()
+
     return
 
