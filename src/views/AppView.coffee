@@ -27,6 +27,10 @@ class window.AppView extends Backbone.View
       alert 'you lose'
       @reset()
       ), @
+    @model.on 'push', (->
+      alert 'push'
+      @reset()
+      ), @
       
   reset: ->
     this.model.newRound()
