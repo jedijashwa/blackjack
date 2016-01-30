@@ -6,9 +6,6 @@ class window.Deck extends Backbone.Collection
       new Card
         rank: card % 13
         suit: Math.floor(card / 13)
-    @on 'remove', (->
-      console.log('test')
-      return), @
 
     return
 
@@ -17,4 +14,4 @@ class window.Deck extends Backbone.Collection
 
   dealDealer: -> new Hand [@pop().flip(), @pop()], @, true 
   
-
+  
