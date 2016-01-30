@@ -1,12 +1,16 @@
 class window.Deck extends Backbone.Collection
   model: Card
 
-  initialize: ->
-    @add _([0...52]).shuffle().map (card) ->
+  initialize: (array)->
+    if Array.isArray array then @add _.shuffle array
+    else @add _([0...52]).shuffle().map (card) ->
       new Card
         rank: card % 13
         suit: Math.floor(card / 13)
-
+    @on 'remove', (->
+      console.log @length
+      if @length is 0 then @trigger 'empty'
+      return), @
     return
 
 

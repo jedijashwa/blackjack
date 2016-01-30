@@ -6,6 +6,11 @@ class window.App extends Backbone.Model
     @set 'discard', []
     @set 'playerHand', new Hand
     @set 'dealerHand', new Hand
+    @get 'deck' 
+      .on 'empty', (->
+        console.log 'empty'
+        @set 'deck', new Deck @get 'discard'
+        return), @
     @newRound()
     return
   
@@ -22,17 +27,9 @@ class window.App extends Backbone.Model
     return
 
   newRound: ->
-    @get 'playerHand'
-      .map ((card)-> 
-        @get 'discard'
-          .push(card)
-        return).bind @
-    @get 'dealerHand'
-      .map ((card)-> 
-        @get 'discard'
-          .push(card)
-        return).bind @
-    console.log @get 'discard'
+    @discard()
+    if @get 'deck'
+      .length < 4 then @set 'deck', new Deck()
     @set 'playerHand', (@get 'deck'
       .dealPlayer())
     @set 'dealerHand', (@get 'deck'
@@ -51,4 +48,16 @@ class window.App extends Backbone.Model
         return
       ), @    
     return
+    
+  discard: ->
+    @get 'playerHand'
+      .map ((card)-> 
+        @get 'discard'
+          .push(card)
+        return).bind @
+    @get 'dealerHand'
+      .map ((card)-> 
+        @get 'discard'
+          .push(card)
+        return).bind @
     
