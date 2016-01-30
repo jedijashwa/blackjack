@@ -8,7 +8,6 @@ class window.Deck extends Backbone.Collection
         rank: card % 13
         suit: Math.floor(card / 13)
     @on 'remove', (->
-      console.log @length
       if @length is 0 then @trigger 'empty'
       return), @
     return
