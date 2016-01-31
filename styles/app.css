@@ -1,16 +1,37 @@
+body {
+  background-image: url(http://p1.pichost.me/i/39/1619872.jpg?dl=1);
+  background-size: cover;
+}
+
+.table-container {
+  margin-left: 150px;
+  margin-top: 25px;
+  color: #FF4E66;
+  font-weight: 800;
+}
+
 .card {
   float: left;
   border: solid 1px black;
-  width: 100px;
+  width: 105px;
   border-radius: 5px;
-  height: 140px;
+  height: 150px;
   margin-right: 20px;
+  padding: 5px;
+  background-color: white;
+  color: black;
 }
 
 .covered {
-  background-color: black;
+  background-image: url('http://cdn.shopify.com/s/files/1/0200/7616/products/red-back_1_1024x1024.png');
+  background-size: cover;
+  color: transparent;
 }
 
 .hand {
   overflow: auto;
+}
+
+.red{
+  color: red;
 }
